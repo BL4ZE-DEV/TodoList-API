@@ -10,6 +10,17 @@ class TodoList extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'todo',
+        'userId'
+    ];
+
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
 
     public function users(): BelongsTo
     {

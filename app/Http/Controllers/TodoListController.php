@@ -5,62 +5,43 @@ namespace App\Http\Controllers;
 use App\Models\TodoList;
 use App\Http\Requests\StoreTodoListRequest;
 use App\Http\Requests\UpdateTodoListRequest;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
+use PHPUnit\Event\Tracer\Tracer;
 
 class TodoListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+   public function createTodo(StoreTodoListRequest $request) 
+   {
+      if (!Auth::check()) {
+         return response()->json([
+             'status' => false,
+             'message' => 'User not authenticated'
+         ], 401);
+     }
+ 
+       $todoList = TodoList::create([
+           'todo' => $request->todo,
+           'userId' => Auth::user()->id
+       ]);
+   
+       return response()->json([
+           'status' => true,
+           'todo' => $todoList
+       ], 201);
+   }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTodoListRequest $request)
-    {
-        //
-    }
+   public function completeTodo(TodoList $todo)
+   {
+       $todo->completed = $todo->completed ? 0 : 1;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TodoList $todoList)
-    {
-        //
-    }
+       $todo->save();
+   
+       return response()->json([
+           'message' => 'Todo updated successfully',
+           'todo' => $todo
+       ], 200);
+   }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TodoList $todoList)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTodoListRequest $request, TodoList $todoList)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TodoList $todoList)
-    {
-        //
-    }
 }
