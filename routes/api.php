@@ -16,8 +16,17 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
 
 Route::middleware('auth:api')->group(function(){
-    Route::post('/', [TodoListController::class , 'createTodo']);
-    Route::patch('/complete/{todo}', [TodoListController::class , 'completeTodo']);
-    Route::get('/', [TodoListController::class, 'userTodo']);
-    Route::get('/', [TodoListController::class, 'completedTodo']);
+    Route::prefix('/todo')->group(function()
+    { 
+        Route::post('/', [TodoListController::class , 'createTodo']);
+        Route::patch('/complete/{todo}', [TodoListController::class , 'completeTodo']);
+        Route::get('/', [TodoListController::class, 'userTodo']);
+        Route::get('/', [TodoListController::class, 'completedTodo']);
+    });
+
+    Route::prefix('/profile')->group(function()
+    {
+        
+    });
+   
 });

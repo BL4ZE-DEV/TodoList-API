@@ -23,7 +23,7 @@ class TodoListController extends Controller
  
        $todoList = TodoList::create([
            'todo' => $request->todo,
-           'userId' => Auth::user()->id
+           'userId' => Auth::user()->userId
        ]);
    
        return response()->json([
