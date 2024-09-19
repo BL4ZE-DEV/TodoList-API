@@ -18,4 +18,6 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 Route::middleware('auth:api')->group(function(){
     Route::post('/', [TodoListController::class , 'createTodo']);
     Route::patch('/complete/{todo}', [TodoListController::class , 'completeTodo']);
+    Route::get('/', [TodoListController::class, 'userTodo']);
+    Route::get('/', [TodoListController::class, 'completedTodo']);
 });
