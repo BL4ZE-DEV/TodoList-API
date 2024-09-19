@@ -3,16 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Tymon\JWTAuth\Contracts\Providers\JWT;
+use Illuminate\Support\Str;
+
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +26,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'userId'
     ];
 
     /**
@@ -31,6 +35,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $hidden = [
+        'id',
         'password',
         'remember_token',
     ];
@@ -48,6 +53,13 @@ class User extends Authenticatable implements JWTSubject
         ];
     }
 
+    protected $primaryKey = 'userId';
+
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
 
     public function todo() : HasMany
     {
@@ -64,5 +76,11 @@ class User extends Authenticatable implements JWTSubject
     { 
         return [];
     }
+    protected static function boot(){
+        parent::boot();
 
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = (string) Str::uuid();
+        });
+    }
 }

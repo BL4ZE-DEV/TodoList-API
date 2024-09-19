@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('todo_lists', function (Blueprint $table) {
-            $table->id();
+           $table->uuid('todoId');
             $table->text('todo');
             $table->integer('completed')->default(0);
-            $table->foreignId('userId')->constrained('users');
+            $table->foreignUuid('userId')->constrained('users','userId');
             $table->timestamps();
         });
     }
