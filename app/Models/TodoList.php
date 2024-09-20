@@ -20,7 +20,8 @@ class TodoList extends Model
 
     protected $fillable = [
         'todo',
-        'userId'
+        'userId',
+        'status'
     ];
 
     protected $hidden = [

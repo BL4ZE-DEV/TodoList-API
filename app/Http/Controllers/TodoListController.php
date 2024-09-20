@@ -32,13 +32,16 @@ class TodoListController extends Controller
 
    public function completeTodo(TodoList $todo)
    {
-       $todo->completed = $todo->completed ? TodoStatus::PENDING : TodoStatus::COMPLETED;
-       $todo->save();
+      $todo->status = $todo->status == TodoStatus::PENDING->value ? TodoStatus::COMPLETED  : $todo->status ;
+
+        $todo->save();
 
        return response()->json([
            'message' => 'Todo Completed',
         ], 200);
-   }
+    }
+       
+   
 
    public function userTodos()
    {
@@ -64,18 +67,18 @@ class TodoListController extends Controller
         ]);
    }
 
-   public function updateTodo(UpdateTodoListRequest $request, TodoList $todoList)
+   public function updateTodo(UpdateTodoListRequest $request, TodoList $todo)
    {
-      $data =  $todoList->update([
-            'todo' => $request->todo ?? $todoList->todo
-        ]);
-
-        if($data){
-            return response()->json([
-                'message' => "Todo updated successfully!"
-            ]);
-        }
+       
+           $todo->update([
+               'todo' => $request->todo ?? $todo->todo
+           ]);
+   
+           return response()->json([
+               'message' => "Todo updated successfully!"
+           ], 200);   
    }
+   
 
    public function deleteTodo(TodoList $todo)
    {
