@@ -31,6 +31,7 @@ class TodoListController extends Controller
            'todo' => $todoList
        ], 201);
    }
+   
    public function completeTodo(TodoList $todo)
    {
        $todo->completed = $todo->completed ? 0 : 1;
@@ -39,8 +40,8 @@ class TodoListController extends Controller
    
        return response()->json([
            'message' => 'Todo updated successfully',
-           'todo' => $todo
-       ], 200);
+
+        ], 200);
    }
 
    public function userTodos()

@@ -39,15 +39,11 @@ class ProfileController extends Controller
         }
     }
 
-    private function checkPassword(Request $request)
+    private function checkPassword($old_password)
     {
-        $request->validate([
-            'old_password' => 'required'
-        ]);
-    
         $user = User::find(Auth::id());
     
-        if($user && Hash::check($request->old_password, $user->password)){
+        if($user && Hash::check($old_password, $user->password)){
             return true;
         }
         return false;
@@ -74,3 +70,4 @@ class ProfileController extends Controller
         }
     }
 }
+ 
