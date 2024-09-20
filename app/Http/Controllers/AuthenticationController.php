@@ -30,8 +30,8 @@ class AuthenticationController extends Controller
 
         return response()->json([
             'message' => 'User registered successfully',
-            'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'user' => $user
         ], 201);
     }
 
