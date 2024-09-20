@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodoListController;
+use App\Models\TodoList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,10 @@ Route::middleware('auth:api')->group(function(){
     Route::prefix('/todo')->group(function()
     { 
         Route::post('/', [TodoListController::class , 'createTodo']);
-        Route::patch('/complete/{todo}', [TodoListController::class , 'completeTodo']);
         Route::get('/', [TodoListController::class, 'userTodo']);
-        Route::get('/', [TodoListController::class, 'completedTodo']);
+        Route::patch('/{todo}/complete', [TodoListController::class , 'completeTodo']);
+        Route::put('/{todo}/update', [TodoListController::class, 'updateTodo']);
+        Route::delete('/{todo}/delete', [TodoListController::class, 'deleteTodo']);
     });
 
     Route::prefix('/profile')->group(function()
