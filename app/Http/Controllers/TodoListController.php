@@ -57,8 +57,8 @@ class TodoListController extends Controller
 
    public function fetchCompletedTodo()
    {
-     $completedTodos = TodoList::where('userId', Auth::user()->id)
-        ->where('completed', 1)
+     $completedTodos = TodoList::where('userId', Auth::user()->userId)
+        ->where('status', TodoStatus::COMPLETED)
         ->get();
 
         return response()->json([
@@ -66,6 +66,19 @@ class TodoListController extends Controller
             'todo' => $completedTodos
         ]);
    }
+
+   public function fetchPendingTodo()
+   {
+    $pendingTodos = TodoList::where('userId', Auth::user()->userId)
+    ->where('status', TodoStatus::PENDING)
+    ->get();
+
+    return response()->json([
+        'status' => true,
+        'todo' => $pendingTodos
+    ]); 
+   }
+   
 
    public function updateTodo(UpdateTodoListRequest $request, TodoList $todo)
    {
@@ -87,5 +100,44 @@ class TodoListController extends Controller
         return response()->json([
             'message' => 'Todo deleted successfully!'
         ], 200);
+   }
+
+   public function rating()
+   {
+        $todos = TodoList::where('userId', Auth::user()->userId)->get();
+        
+        $todoCompleted = [];
+        $todoPending  = [];
+
+        foreach($todos as $todo){
+            if($todo->status == TodoStatus::COMPLETED->value){
+                $todoCompleted[]= TodoStatus::COMPLETED;
+            }else{
+                $todoPending[]= TodoStatus::PENDING;
+            }
+            
+        }
+
+        $todosCount = count($todos);
+        $completedTodosCount = count($todoCompleted);
+
+        if($todosCount === 0){
+            return response()->json([
+                'message' => 'success',
+                'percentage' => '0%',
+                'remark' => 'No todos available'
+            ]);
+        }
+
+      $percentage  =  ($completedTodosCount / $todosCount)*100 ;
+    
+      $remark = $percentage < 50 ? 'unsatisfactory' : 'Good';
+
+      return response()->json([
+        'message' => 'success',
+        'percentage' => number_format($percentage , 2).'%',
+        'remark' => $remark
+      ]);
+        
    }
 }

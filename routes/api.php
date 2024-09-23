@@ -25,6 +25,9 @@ Route::middleware('auth:api')->group(function(){
         Route::patch('/{todo}/complete', [TodoListController::class , 'completeTodo']);
         Route::put('/{todo}/update', [TodoListController::class, 'updateTodo']);
         Route::delete('/{todo}/delete', [TodoListController::class, 'deleteTodo']);
+        Route::get('/completed', [TodoListController::class, 'fetchCompletedTodo']);
+        Route::get('/pending', [TodoListController::class, 'fetchPendingTodo']);
+        Route::get('/rating', [TodoListController::class, 'rating']);
     });
 
     Route::prefix('/profile')->group(function()

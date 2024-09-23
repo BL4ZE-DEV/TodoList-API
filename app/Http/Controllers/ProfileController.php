@@ -52,7 +52,7 @@ class ProfileController extends Controller
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'new_password' => 'required',
+            'new_password' => 'required|confirmed',
             'old_password' => 'required'
         ]);
 
