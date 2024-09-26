@@ -59,7 +59,7 @@ class TodoListController extends Controller
    {
      $completedTodos = TodoList::where('userId', Auth::user()->userId)
         ->where('status', TodoStatus::COMPLETED)
-        ->get();
+        ->paginate();
 
         return response()->json([
             'status' => true,
@@ -107,13 +107,10 @@ class TodoListController extends Controller
         $todos = TodoList::where('userId', Auth::user()->userId)->get();
         
         $todoCompleted = [];
-        $todoPending  = [];
 
         foreach($todos as $todo){
             if($todo->status == TodoStatus::COMPLETED->value){
                 $todoCompleted[]= TodoStatus::COMPLETED;
-            }else{
-                $todoPending[]= TodoStatus::PENDING;
             }
             
         }
