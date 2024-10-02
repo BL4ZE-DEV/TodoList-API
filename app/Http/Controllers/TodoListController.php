@@ -137,4 +137,19 @@ class TodoListController extends Controller
       ]);
         
    }
+
+   public function search()
+   {
+       $todo = TodoList::where(function($query){
+           $query->when(request()->filled('search'), function($query){
+               return $query->where('todo', 'LIKE', '%'.request('search').'%');
+           });
+       })->paginate(); 
+   
+       return response()->json([
+           'status' => true,
+           'message' => 'todo fetched successfully!',
+           'data' => $todo
+       ]);
+   }
 }
