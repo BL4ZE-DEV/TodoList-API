@@ -11,7 +11,7 @@
 
     <div class="text-white flex  flex-row justify-end">
            <a href="register"><button class="mt-5 bg-red-500 p-6 hover:bg-blue">Sign Up</button></a>
-            <a><button class="ml-5 mr-5 mt-5 bg-red-500 p-6">Login</button></a>
+            <a href="login"><button class="ml-5 mr-5 mt-5 bg-red-500 p-6">Login</button></a>
     </div>
     <div class="mt-80 text-white">
         <h1 class="flex items-center justify-center text-center font-bold text-3xl">

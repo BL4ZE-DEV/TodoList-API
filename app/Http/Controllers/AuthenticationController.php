@@ -10,6 +10,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthenticationController extends Controller
 {
+
+    public function showRegiaterfeild(){
+
+        return view('Auth.regsiter');
+    }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -35,7 +41,9 @@ class AuthenticationController extends Controller
         ], 201);
     }
 
-
+    public function showLoginForm(){
+        return view('Auth.login');
+    }
 
     public function login(Request $request)
     {

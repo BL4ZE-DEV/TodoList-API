@@ -8,12 +8,12 @@ Route::get('/', function () {
 
 
 Route::get('/register', function() {
-    return view('register');
+    return view('Auth.register');
 });
 
 
 Route::get('/login', function ()  {
-   return view('login'); 
+   return view('Auth.login'); 
 });
 
 Route::get('todo', function() {
