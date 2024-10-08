@@ -26,7 +26,7 @@
       "LOG_CHANNEL": "stderr",
       "SESSION_DRIVER": "cookie",
       "DB_CONNECTION": "mysql",
-      "DB_HOST": "phpmyadmin",
+      "DB_HOST": "127.0.0.1",
       "DB_PORT": "3306",
       "DB_DATABASE": "todolist_api_db",
       "DB_USERNAME": "root",
