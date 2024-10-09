@@ -15,7 +15,7 @@
     "env": {
       "APP_ENV": "production",
       "APP_DEBUG": "false",
-      "APP_URL": "https://yourproductionurl.com",
+      "APP_URL": "todo-list-psi-two-19.vercel.app",
       "DB_CONNECTION": "mysql",
       "DB_HOST": "127.0.0.1",
       "DB_PORT": "3306",
