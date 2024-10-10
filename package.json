@@ -9,5 +9,14 @@
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.0",
         "vite": "^5.0"
+    },
+    
+   "dependencies": {
+       "inflight": "^1.0.6",
+        "rimraf": "^4.0.0",
+        "glob": "^9.0.0",
+        "debug": "^4.3.1",
+        "uuid": "^8.0.0"
     }
+      
 }
