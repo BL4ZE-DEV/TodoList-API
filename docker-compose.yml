@@ -13,7 +13,7 @@ services:
     networks:
       - laravel
     expose:
-      - 9000
+      - "9000"
 
   nginx:
     image: nginx:alpine
