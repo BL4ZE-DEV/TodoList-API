@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libpq-dev \
     libonig-dev \
-    curl
+    curl && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions with necessary libraries
 RUN docker-php-ext-configure pgsql --with-pgsql=/usr/include/postgresql && \
@@ -24,10 +25,11 @@ COPY . .
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set permissions for Laravel's storage and cache directories
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chown -R www-data:www-data /var/www && \
+    chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Expose the necessary ports
 EXPOSE 80 9000
 
 # Start the PHP-FPM service
-CMD ["php-fpm"]
+CMD ["php-fpm", "-F"]
