@@ -1,4 +1,4 @@
-# Use the official PHP 8.3 FPM image
+# Use the official PHP 8.2 FPM image
 FROM php:8.2-fpm
 
 # Install system dependencies and required libraries
