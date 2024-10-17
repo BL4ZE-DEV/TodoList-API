@@ -21,7 +21,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./docker/nginx.conf:/etc/nginx/nginx.conf # Marked read-only for safety
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro # Marked read-only for safety
       - .:/var/www
     depends_on:
       - app

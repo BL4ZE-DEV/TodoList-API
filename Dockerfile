@@ -31,7 +31,7 @@ RUN chown -R www-data:www-data /var/www && \
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose the necessary ports
-EXPOSE 80 9000
+EXPOSE 9000 80
 
 # Start Supervisor to manage PHP-FPM and Nginx
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
