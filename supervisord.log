@@ -7,3 +7,6 @@
 2024-10-17 12:17:13,736 INFO spawnerr: can't find command 'nginx'
 2024-10-17 12:17:16,743 INFO spawnerr: can't find command 'nginx'
 2024-10-17 12:17:16,745 INFO gave up: nginx entered FATAL state, too many start retries too quickly
+2024-10-17 12:49:13,263 WARN received SIGQUIT indicating exit request
+2024-10-17 12:49:13,265 INFO waiting for php-fpm to die
+2024-10-17 12:49:13,283 INFO stopped: php-fpm (exit status 0)
