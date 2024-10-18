@@ -31,3 +31,31 @@
 2024-10-17 13:06:34,602 WARN received SIGQUIT indicating exit request
 2024-10-17 13:06:34,604 INFO waiting for php-fpm to die
 2024-10-17 13:06:34,650 INFO stopped: php-fpm (exit status 0)
+2024-10-17 13:06:38,526 INFO Set uid to user 0 succeeded
+2024-10-17 13:06:38,544 INFO supervisord started with pid 1
+2024-10-17 13:06:39,549 INFO spawned: 'php-fpm' with pid 7
+2024-10-17 13:06:40,679 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-10-17 13:30:16,369 WARN received SIGQUIT indicating exit request
+2024-10-17 13:30:16,369 INFO waiting for php-fpm to die
+2024-10-17 13:30:16,372 INFO stopped: php-fpm (exit status 0)
+2024-10-17 13:30:46,302 INFO Set uid to user 0 succeeded
+2024-10-17 13:30:46,307 INFO supervisord started with pid 1
+2024-10-17 13:30:47,311 INFO spawned: 'php-fpm' with pid 7
+2024-10-17 13:30:48,333 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-10-17 13:45:49,226 WARN received SIGQUIT indicating exit request
+2024-10-17 13:45:49,227 INFO waiting for php-fpm to die
+2024-10-17 13:45:49,248 INFO stopped: php-fpm (exit status 0)
+2024-10-17 14:06:07,571 INFO Set uid to user 0 succeeded
+2024-10-17 14:06:07,577 INFO supervisord started with pid 1
+2024-10-17 14:06:08,579 INFO spawned: 'php-fpm' with pid 7
+2024-10-17 14:06:09,621 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-10-18 14:44:54,447 WARN received SIGQUIT indicating exit request
+2024-10-18 14:44:54,449 INFO waiting for php-fpm to die
+2024-10-18 14:44:54,457 INFO stopped: php-fpm (exit status 0)
+2024-10-18 18:48:46,238 INFO Set uid to user 0 succeeded
+2024-10-18 18:48:46,247 INFO supervisord started with pid 1
+2024-10-18 18:48:47,251 INFO spawned: 'php-fpm' with pid 7
+2024-10-18 18:48:48,310 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-10-18 18:48:56,485 WARN received SIGQUIT indicating exit request
+2024-10-18 18:48:56,487 INFO waiting for php-fpm to die
+2024-10-18 18:48:56,493 INFO stopped: php-fpm (exit status 0)
