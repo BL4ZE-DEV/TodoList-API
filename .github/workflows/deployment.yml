@@ -1,0 +1,65 @@
+name: Development Environment
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  Paysmosmo-CRM-Development-Environment:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.3'
+    - uses: actions/checkout@v3
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: Install Dependencies
+      run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Generate key
+      run: |
+        php artisan key:generate
+        php artisan optimize:clear
+    # - name: Directory Permissions
+      # run: chmod -R 777 ./storage ./bootstrap/cache
+    # - name: Create TDD Database
+    #   run: |
+    #     mkdir -p database
+    #     touch database/database.sqlite
+    # - name: Execute tests (Unit and Feature tests) via PHPUnit
+    #   env:
+    #     DB_CONNECTION: sqlite
+    #     DB_DATABASE: database/database.sqlite
+    #   run: vendor/bin/phpunit
+    - name: Folder and File Permissions
+      run: find . -type d -exec chmod 775 {} \;
+    - name: File Permission
+      run: find . -type f -exec chmod 664 {} \;
+
+    # Storage Readable
+    # - name: Open storage for all access
+    #   run: chmod -R 777 ./storage
+
+    - name: Open Cache for all access
+      run: |
+        chmod -R 777 storage
+        chmod -R 777 bootstrap/cache
+
+    # Autoload for php class
+    - name: Composer dump autoload
+      run: composer dump-autoload -o
+    - name: Remove env file
+      run: rm .env
+
+    - name: 📂 Copy Build folder to the server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOSTNAME }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_SSH_KEY}}
+        port: ${{ secrets.PORT }}
+        source: "."
+        target: "/var/www/html/TodoList-API"
+        # target: ${{ secrets.FOLDER }}
