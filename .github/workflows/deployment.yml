@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Paysmosmo-CRM-Development-Environment:
+  Todo-List-Development-Environment:
 
     runs-on: ubuntu-latest
 
