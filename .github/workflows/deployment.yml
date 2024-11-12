@@ -21,7 +21,7 @@ jobs:
     - name: Generate key
       run: |
         php artisan key:generate
-        php artisan optimize:clear
+    # php artisan optimize:clear
     # - name: Directory Permissions
       # run: chmod -R 777 ./storage ./bootstrap/cache
     # - name: Create TDD Database
