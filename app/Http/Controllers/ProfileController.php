@@ -34,7 +34,7 @@ class ProfileController extends Controller
         if($user->update($data))
         {
             return response()->json([
-                'message' => 'Profile updated succsessfully !'
+                'message' => 'Profile has updated !'
             ]);
         }
     }
